@@ -1,0 +1,35 @@
+{% extends "todo/base.html" %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+
+<div class="form-container container-fluid ">
+    <form  method="POST" class="form-content bg-light">
+        {% csrf_token %}
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm border-0 rounded">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Login</h3>
+                        <form>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" placeholder="Enter your username" name="username"required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label" >Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                        <p class="text-center mt-2">
+                            Don't have an account? <a href={% url 'register'%} class="text-decoration-none">Sign up</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock content %}

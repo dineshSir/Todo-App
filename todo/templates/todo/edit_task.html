@@ -1,0 +1,51 @@
+   <!-- Modal for Editing Task -->
+   <div class="modal fade" id="editTaskModal{{ task.id }}" tabindex="-1" aria-labelledby="editTaskModalLabel{{ task.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="POST" action="{% url 'edit_task' task.id %}">
+                {% csrf_token %}
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Task Title</span>
+                    <input type="text" class="form-control" placeholder="Task Title" name="title" required value="{{ task.title }}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text">Task Description</span>
+                    <textarea class="form-control" placeholder="Task Description" name="description" required>{{ task.description }}</textarea>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <!-- Modal abort button -->
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Abort Edit</button>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% comment %} {% extends "todo/base.html" %}
+{% block title %}Edit Task{% endblock title %}
+{% block content %}
+    <form method='POST'>
+        {% csrf_token %}
+        <div class="input-group flex-nowrap">
+            <span class="input-group-text">Task Title</span>
+            <input type="text" class="form-control" placeholder="Task Title" name="title" value="{{task.title}}">
+        </div>
+        <div class="input-group">
+            <span class="input-group-text">Task Description</span>
+            <textarea class="form-control" placeholder="Task Description" name="description" value="{{task.description}}">{{task.description}}</textarea>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="{%url 'task_list' %}" class="btn btn-danger">Abort Task Edit</a>
+            <button type='submit' class="btn btn-success flex-fill">Save Changes</button>
+        </div>
+    </form>
+{% endblock content %} {% endcomment %}

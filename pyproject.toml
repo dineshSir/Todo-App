@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "todo-app"
+version = "0.1.0"
+description = "Django based todo web application."
+authors = ["Dinesh Gautam <dinesh.gautam2070@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.2"
+psycopg2-binary = "^2.9.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

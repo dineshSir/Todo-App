@@ -1,0 +1,123 @@
+{% extends "todo/base.html" %}
+{% block title %}Task-List{% endblock title %}
+{% block content %}
+    <a href="{% url 'logout' %}" class="btn btn-dark logout-btn">Logout</a>
+
+    <div class="header">
+        <h1>Task Lists for {{ username }}</h1>
+    </div>
+
+    <form method="GET">
+        <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="status" id="status" onchange="this.form.submit()">
+            <option value="all" {% if status_filter == 'all' %}selected{% endif %}>All</option>
+            <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Completed</option>
+            <option value="not_completed" {% if status_filter == 'not_completed' %}selected{% endif %}>Not-Completed</option>
+        </select>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                {% if not task.completed %}
+                    <td>Not Completed</td>
+                    <td><a href="{% url 'completed' id=task.id %}" class="btn btn-warning">Mark Completed</a></td>
+                {% else %}
+                    <td>Completed</td>
+                    <td><a href="{% url 'completed' id=task.id %}" class="btn btn-warning">Mark Incomplete</a></td>
+                {% endif %}
+                <td>
+                    <!-- Trigger Edit Modal -->
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editTaskModal{{ task.id }}">
+                        Edit Task
+                    </button>
+                    {% include "todo/edit_task.html" %}
+                    <a href="{% url 'delete_task' task.id %}" class="btn btn-danger">DELETE TASK</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
+        Add task
+    </button>
+    {% include "todo/add_task.html" %}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends "todo/base.html" %}
+{% block title %}Task-List{% endblock title %}
+{% block content %}
+    <a href="{% url 'logout' %}" class="btn btn-dark logout-btn">Logout</a>
+
+    <div class="header">
+        <h1>Task Lists for {{username}}</h1>
+    </div>
+
+    <form method="GET">
+        <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="status" id="status" onchange="this.form.submit()">
+          <option value="all" {% if status_filter == 'all' %}selected{% endif %}>All</option>
+          <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Completed</option>
+          <option value="not_completed" {% if status_filter == 'not_completed' %}selected{% endif %}>Not-Completed</option>
+        </select>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+          <tr>
+            <td>{{task.title}}</td>
+            <td>{{task.description}}</td>
+            {% if not task.completed %}
+                <td>Not Completed</td>
+                <td><a href="{% url 'completed' id=task.id%}" class="btn btn-warning">Mark Completed</a>
+            {% else %}
+                <td>Completed</td>
+                <td>
+                    <a href="{% url 'completed' id=task.id %}" class="btn btn-warning">Mark Incomplete</a>
+            {% endif %}
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editTaskModal"{{}}>
+                        Edit Task
+                    </button> {% include "todo/edit_task.html" %}
+                    <a href="{% url 'delete_task' task.id %}" class="btn btn-danger">DELETE TASK</a>
+                </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
+        Add task
+    </button>
+
+    {% include "todo/add_task.html" %}
+
+{% endblock content %} {% endcomment %}

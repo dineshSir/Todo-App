@@ -1,0 +1,23 @@
+<div class="modal" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="POST" action="{% url 'add_task' %}">
+                {% csrf_token %}
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Task Title</span>
+                    <input type="text" class="form-control" placeholder="Task Title" name="title" required>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text">Task Description</span>
+                    <textarea class="form-control" placeholder="Task Description" name="description" required></textarea>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <!-- Modal abort button -->
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Abort Add</button>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-success">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
