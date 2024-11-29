@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="form-container container-fluid ">
-    <form  method="POST" class="form-content bg-light">
+    <form  method="POST" class="form-content bg-light" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="col-md-6 col-lg-4">

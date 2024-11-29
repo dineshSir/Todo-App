@@ -1,7 +1,7 @@
 {% extends "todo/base.html" %}
 {% block title %}Login{% endblock title %}
 {% block content %}
-    <form method="POST" >
+    <form method="POST" action="{% url 'register' %}">
         {% csrf_token %}
         <div class="container d-flex justify-content-center align-items-center min-vh-100 form-content bg-light">
             <div class="col-md-6 col-lg-4">
